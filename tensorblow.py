@@ -12,8 +12,10 @@ class Node:
     def __relu(self, temp_value):
         return max(0, temp_value)
 
-    def __init__(self, value = 0.0):
+    def __init__(self, weights = [], bias = 0.0, value = 0.0):
         self.value = value
+        self.weights = weights
+        self.bias = bias
         self.__check_inputs()        
 
     
@@ -48,3 +50,5 @@ class Layer:
 
 # first_layer = Layer(3)
 # first_layer.print_layer()
+
+input = [2, 4]

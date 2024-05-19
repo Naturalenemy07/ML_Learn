@@ -1,11 +1,6 @@
 import math
 
-class Node:
-    def __check_inputs(self):
-        # if len(self.weight) != len(self.inputs):
-        #     raise IndexError
-        pass
-    
+class Node: 
     def __sig(self, temp_value):
         return (1 / (1 + math.e ** temp_value))
     
@@ -16,9 +11,7 @@ class Node:
         self.value = value
         self.weights = weights
         self.bias = bias
-        self.__check_inputs()        
 
-    
     def print_value(self):
         print(self.value)
         return
@@ -35,12 +28,17 @@ class Node:
     
 class Layer:
     def __create_layer(self):
-        for i in range(self.size):
-            self.layer.append(Node())
+        if self.size == 0:
+            for i in range(self.size):
+                self.layer.append(Node())
+        else:
+            for i in range(self.size):
+                self.layer.append(Node(value=self.inda[i]))
 
-    def __init__(self, size):
-        self.size = size
+    def __init__(self, inda = []):
+        self.size = len(inda)
         self.layer = []
+        self.inda = inda
         self.__create_layer()
     
     def print_layer(self):
@@ -51,4 +49,6 @@ class Layer:
 # first_layer = Layer(3)
 # first_layer.print_layer()
 
-input = [2, 4]
+X = [2,4,3]
+input_layer = Layer(inda=X)
+input_layer.print_layer()

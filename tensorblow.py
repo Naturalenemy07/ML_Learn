@@ -26,7 +26,7 @@ class Node:
         elif self.acti == 'relu':
             return self.__relu(temp_sum - self.bias)
     
-class Layer:
+class Input_Layer:
     def __create_layer(self):
         if self.size == 0:
             for i in range(self.size):
@@ -44,11 +44,23 @@ class Layer:
     def print_layer(self):
         for i in self.layer:
             print(i.value)
-        
 
-# first_layer = Layer(3)
-# first_layer.print_layer()
+class Hidden_Layer:
+    def __create_layer(self):
+        for i in range(self.size):
+            self.layer.append(Node(value=0))
+
+    def __init__(self, size):
+        self.layer = []
+        self.size = size
+        self.__create_layer()
+
+    def print_layer(self):
+        for i in self.layer:
+            print(i.value)
 
 X = [2,4,3]
-input_layer = Layer(inda=X)
+input_layer = Input_Layer(inda=X)
+hidden_layer = Hidden_Layer(size=1)
 input_layer.print_layer()
+hidden_layer.print_layer()

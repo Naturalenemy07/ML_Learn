@@ -1,6 +1,14 @@
 import math
 
-class Node: 
+class Node:
+    ''' The node is a unit used to build a layer in ML model
+
+    Attributes:
+        input_vector: A list of values indicating the inputs to the node class.
+        weights: A list of values that is applied to each input value.
+        bias: a float that is used at the end of a forward propogation operation for the node.
+        value: a float representing the output value of the node following forward propagation.
+    '''
     def __init__(self, input_vector = [], weights = [], bias = 0.0, value = 0.0):
         self.value = value
         self.weights = weights
@@ -16,7 +24,7 @@ class Node:
         for i in range(end):
             temp_sum += self.input_vector[i] * self.weights[i]
         return temp_sum + self.bias
-    
+
 class Layer:
     def __sig(self, temp_value):
         return (1 / (1 + math.e ** temp_value))
@@ -37,8 +45,5 @@ class Layer:
         for i in self.layer:
             print(i.value)
 
-X = [2,4,3]
-hidden_layer = Layer(X, size=1)
-hidden_layer.print_layer()
-
-# print(type(hidden_layer.layer[0].calc_value()))
+X = [2,4,3] 
+a = Node([],[],0,0)

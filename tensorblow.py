@@ -15,7 +15,7 @@ class Node:
         end = len(self.input_vector)
         for i in range(end):
             temp_sum += self.input_vector[i] * self.weights[i]
-        return temp_sum
+        return temp_sum + self.bias
     
 class Layer:
     def __sig(self, temp_value):

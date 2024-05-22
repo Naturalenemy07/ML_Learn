@@ -14,36 +14,45 @@ class Node:
         self.weights = weights
         self.bias = bias
         self.input_vector = input_vector
-
-    def value(self):
-        return self.value
     
-    def forward_propagation(self):
+    def calc_value(self):
         temp_sum = 0
         end = len(self.input_vector)
         for i in range(end):
             temp_sum += self.input_vector[i] * self.weights[i]
-        return temp_sum + self.bias
+        self.value = temp_sum + self.bias
+        return self.value
 
 class Layer:
-    def __sig(self, temp_value):
-        return (1 / (1 + math.e ** temp_value))
+    def __sig(self, input_value):
+        return (1 / (1 + math.e ** input_value))
     
-    def __relu(self, temp_value):
-        return max(0, temp_value)
+    def __relu(self, input_value):
+        return max(0, input_value)
     
     def __create_layer(self):
         for i in range(self.size):
             self.layer.append(Node(value=1, weights=1))
 
-    def __init__(self, size):
+    def __init__(self, size,activation = 'relu'):
         self.layer = []
         self.size = size
+        self.output = []
+        self.activation = activation
         self.__create_layer()
+
+    def forward_propagate(self):
+        for item in self.layer:
+            temp_value = item.calc_value()
+            self.output.append(self.__relu(temp_value))
+        return self.output
 
     def print_layer(self):
         for i in self.layer:
             print(i.value)
 
-X = [2,4,3] 
-a = Node([],[],0,0)
+X = [2,4,3]
+Y = [1,1,1]
+a = Node(X, Y, 2)
+value = a.calc_value()
+print(value)

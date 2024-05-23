@@ -31,12 +31,13 @@ class Layer:
         return max(0, input_value)
     
     def __create_layer(self):
-        for i in range(self.size):
-            self.layer.append(Node(value=1, weights=1))
+        for i in range(self.layer_size):
+            self.layer.append(Node(input_vector=self.inputs))
 
-    def __init__(self, size,activation = 'relu'):
+    def __init__(self, layer_size, inputs = [], activation = 'relu'):
         self.layer = []
-        self.size = size
+        self.inputs = inputs
+        self.layer_size = layer_size
         self.output = []
         self.activation = activation
         self.__create_layer()
@@ -56,3 +57,6 @@ Y = [1,1,1]
 a = Node(X, Y, 2)
 value = a.calc_value()
 print(value)
+
+b = Layer(layer_size=3, inputs=X)
+print(b.layer_size)

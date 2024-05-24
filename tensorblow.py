@@ -21,7 +21,6 @@ class Node:
         for i in range(end):
             temp_sum += self.input_vector[i] * self.weights[i]
         self.value = temp_sum + self.bias
-        return self.value
 
 class Layer:
     def __sig(self, input_value):
@@ -32,7 +31,17 @@ class Layer:
     
     def __create_layer(self):
         for i in range(self.layer_size):
-            self.layer.append(Node(input_vector=self.inputs))
+            self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
+
+    def print_layer(self):
+        for i in range(self.layer_size):
+            print(self.layer[i].value)
+    
+    def forward_propagate(self):
+        for item in self.layer:
+            temp_value = item.calc_value()
+            self.output.append(self.__relu(temp_value))
+        return self.output
 
     def __init__(self, layer_size, inputs = [], activation = 'relu'):
         self.layer = []
@@ -42,21 +51,8 @@ class Layer:
         self.activation = activation
         self.__create_layer()
 
-    def forward_propagate(self):
-        for item in self.layer:
-            temp_value = item.calc_value()
-            self.output.append(self.__relu(temp_value))
-        return self.output
 
-    def print_layer(self):
-        for i in self.layer:
-            print(i.value)
+X = [2, 4]
 
-X = [2,4,3]
-Y = [1,1,1]
-a = Node(X, Y, 2)
-value = a.calc_value()
-print(value)
-
-b = Layer(layer_size=3, inputs=X)
-print(b.layer_size)
+inputLayer = Layer(layer_size=len(X), inputs=X)
+print(inputLayer.print_layer())

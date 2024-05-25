@@ -18,7 +18,9 @@ class Node:
     def calc_value(self):
         temp_sum = 0
         end = len(self.input_vector)
+        print("end:", end)
         for i in range(end):
+            print(i)
             temp_sum += self.input_vector[i] * self.weights[i]
         self.value = temp_sum + self.bias
 

@@ -23,6 +23,17 @@ class Node:
         self.value = temp_sum + self.bias
 
 class Layer:
+    ''' The Layer is a set of nodes that undergo the same activation function before outputs
+        are passed to the next layer.
+
+    Attributes:
+        layer_size: an integer representing how many nodes are in the layer.
+        inputs: a list of numbers that is the input to each node in the layer.
+        activation: the activation function of the layer
+        _______
+        output: the set of values that represent the output of each node in the layer
+        layer: the set of Nodes in the layer
+    '''
     def __sig(self, input_value):
         return (1 / (1 + math.e ** input_value))
     
@@ -55,4 +66,4 @@ class Layer:
 X = [2, 4]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
-inputLayer.print_layer()
+hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(),activation='relu')

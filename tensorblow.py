@@ -34,8 +34,8 @@ class Layer:
             self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
 
     def print_layer(self):
-        for i in range(self.layer_size):
-            print(self.layer[i].value)
+        for i in self.layer:
+            print(i.value)
     
     def forward_propagate(self):
         for item in self.layer:
@@ -55,4 +55,4 @@ class Layer:
 X = [2, 4]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
-print(inputLayer.print_layer())
+inputLayer.print_layer()

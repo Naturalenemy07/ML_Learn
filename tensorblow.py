@@ -9,18 +9,20 @@ class Node:
         bias: a float that is used at the end of a forward propogation operation for the node.
         value: a float representing the output value of the node following forward propagation.
     '''
-    def __init__(self, input_vector = [], weights = [], bias = 0.0, value = 0.0):
+    def __weights_gen(self):
+        'Generates weights as a list of ones'
+        return [1] * len(self.input_vector)
+
+    def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
         self.value = value
-        self.weights = weights
         self.bias = bias
         self.input_vector = input_vector
+        self.weights = self.__weights_gen()
     
     def calc_value(self):
         temp_sum = 0
         end = len(self.input_vector)
-        print("end:", end)
         for i in range(end):
-            print(i)
             temp_sum += self.input_vector[i] * self.weights[i]
         self.value = temp_sum + self.bias
 

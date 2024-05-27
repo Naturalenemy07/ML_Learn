@@ -25,6 +25,7 @@ class Node:
         for i in range(end):
             temp_sum += self.input_vector[i] * self.weights[i]
         self.value = temp_sum + self.bias
+        return self.value
 
 class Layer:
     ''' The Layer is a set of nodes that undergo the same activation function before outputs
@@ -42,6 +43,7 @@ class Layer:
         return (1 / (1 + math.e ** input_value))
     
     def __relu(self, input_value):
+        print(input_value)
         return max(0, input_value)
     
     def __create_layer(self):
@@ -54,6 +56,7 @@ class Layer:
     
     def forward_propagate(self):
         for item in self.layer:
+            print(type(item))
             temp_value = item.calc_value()
             self.output.append(self.__relu(temp_value))
         return self.output

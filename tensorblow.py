@@ -47,7 +47,7 @@ class Layer:
     
     def __create_layer(self):
         print("layer size:",self.layer_size)
-        for i in range(self.layer_size):
+        for i in range(self.layer_size - 1):
             print("i:", i)
             print("inputs:", self.inputs[i])
             self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))

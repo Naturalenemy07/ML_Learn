@@ -46,10 +46,7 @@ class Layer:
         return max(0, input_value)
     
     def __create_layer(self):
-        print("layer size:",self.layer_size)
-        for i in range(self.layer_size):
-            print("i:", i)
-            print("inputs:", self.inputs[i])
+        for i in range(self.layer_size - 1):
             self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
 
     def print_layer(self):
@@ -74,4 +71,5 @@ class Layer:
 X = [2, 4]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
+inputLayer.print_layer()
 hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(),activation='relu')

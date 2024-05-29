@@ -46,6 +46,7 @@ class Layer:
         return max(0, input_value)
     
     def __create_layer(self):
+        print(self.inputs)
         print("layer size:",self.layer_size)
         for i in range(self.layer_size - 1):
             print("i:", i)
@@ -57,6 +58,7 @@ class Layer:
             print(i.value)
     
     def forward_propagate(self):
+        print(self.layer)
         for item in self.layer:
             temp_value = item.calc_value()
             self.output.append(self.__relu(temp_value))

@@ -73,3 +73,4 @@ X = [2, 4]
 inputLayer = Layer(layer_size=len(X), inputs=X)
 inputLayer.print_layer()
 hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(),activation='relu')
+# need to relook at forward propagate as it is returning a 1d vector

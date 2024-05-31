@@ -14,12 +14,14 @@ class Node:
         return [1] * len(self.input_vector)
 
     def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
+        'Initialize Node class'
         self.value = value
         self.bias = bias
         self.input_vector = input_vector
         self.weights = self.__weights_gen()
     
     def calc_value(self):
+        'Calculate dot product of weights and inputs'
         temp_sum = 0
         end = len(self.input_vector)
         for i in range(end):
@@ -40,20 +42,25 @@ class Layer:
         layer: the set of Nodes in the layer
     '''
     def __sig(self, input_value):
+        'Returns output when inputted into sigmoid function'
         return (1 / (1 + math.e ** input_value))
     
     def __relu(self, input_value):
+        'Returns zero if input is negative, or input is positive'
         return max(0, input_value)
     
     def __create_layer(self):
-        for i in range(self.layer_size - 1):
+        'Creates layer'
+        for i in range(self.layer_size):
             self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
 
     def print_layer(self):
+        'Prints layer values'
         for i in self.layer:
             print(i.value)
     
     def forward_propagate(self):
+        ''
         for item in self.layer:
             temp_value = item.calc_value()
             self.output.append(self.__relu(temp_value))
@@ -73,4 +80,3 @@ X = [2, 4]
 inputLayer = Layer(layer_size=len(X), inputs=X)
 inputLayer.print_layer()
 hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(),activation='relu')
-# need to relook at forward propagate as it is returning a 1d vector

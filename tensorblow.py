@@ -60,13 +60,14 @@ class Layer:
             print(i.value)
     
     def forward_propagate(self):
-        ''
+        'calculates dot product, feeds into activation function'
         for item in self.layer:
             temp_value = item.calc_value()
             self.output.append(self.__relu(temp_value))
         return self.output
 
     def __init__(self, layer_size, inputs = [], activation = 'relu'):
+        'initializes the layer'
         self.layer = []
         self.inputs = inputs
         self.layer_size = layer_size

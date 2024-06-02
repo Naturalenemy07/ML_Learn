@@ -43,6 +43,7 @@ class Layer:
     '''
     def __sig(self, input_value):
         'Returns output when inputted into sigmoid function'
+        print('sig')
         return (1 / (1 + math.e ** input_value))
     
     def __relu(self, input_value):
@@ -63,10 +64,13 @@ class Layer:
         'calculates dot product, feeds into activation function'
         for item in self.layer:
             temp_value = item.calc_value()
-            self.output.append(self.__relu(temp_value))
+            if self.activation == 'relu':
+                self.output.append(self.__relu(temp_value))
+            elif self.activation == 'sig':
+                self.output.append(self.__sig(temp_value))
         return self.output
 
-    def __init__(self, layer_size, inputs = [], activation = 'relu'):
+    def __init__(self, layer_size, inputs = [], activation = ''):
         'initializes the layer'
         self.layer = []
         self.inputs = inputs
@@ -76,8 +80,9 @@ class Layer:
         self.__create_layer()
 
 
-X = [2, 4]
+X = [2, 4, 6]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
 inputLayer.print_layer()
-hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(),activation='relu')
+hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(), activation='sig')
+hiddenLayer.print_layer()

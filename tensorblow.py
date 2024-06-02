@@ -61,7 +61,7 @@ class Layer:
             print(i.value)
     
     def forward_propagate(self):
-        'calculates dot product, feeds into activation function'
+        'determines value of each Node in layer using Node class'
         for item in self.layer:
             temp_value = item.calc_value()
             if self.activation == 'relu':
@@ -80,10 +80,11 @@ class Layer:
         self.__create_layer()
 
 
-X = [2, 4, 6]
+X = [2]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
 inputLayer.print_layer()
+hiddenLayer = Layer(layer_size=2)
 
 # class Test:
 #     def __init__(self, other_numb, numb = 1):

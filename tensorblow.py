@@ -60,6 +60,7 @@ class Layer:
                 self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
             elif self.typeL == 1:
                 'hidden layer'
+                self.layer.append(Node(input_vector=self.inputs, value=1))
 
 
     def print_layer(self):
@@ -93,6 +94,7 @@ X = [2]
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
 inputLayer.print_layer()
 hiddenLayer = Layer(typeL = 1, layer_size=2, inputs=inputLayer.forward_propagate())
+hiddenLayer.print_layer()
 
 # class Test:
 #     def __init__(self, other_numb, numb = 1):

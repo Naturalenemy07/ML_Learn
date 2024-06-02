@@ -70,7 +70,7 @@ class Layer:
                 self.output.append(self.__sig(temp_value))
         return self.output
 
-    def __init__(self, layer_size, inputs = [], activation = ''):
+    def __init__(self, layer_size, inputs = [], activation = 'relu'):
         'initializes the layer'
         self.layer = []
         self.inputs = inputs
@@ -84,5 +84,15 @@ X = [2, 4, 6]
 
 inputLayer = Layer(layer_size=len(X), inputs=X)
 inputLayer.print_layer()
-hiddenLayer = Layer(layer_size=3, inputs = inputLayer.forward_propagate(), activation='sig')
-hiddenLayer.print_layer()
+
+# class Test:
+#     def __init__(self, other_numb, numb = 1):
+#         self.other_numb = other_numb
+#         self.numb = numb
+
+#     def printNumb(self):
+#         print('numb:', self.numb)
+#         print('other numb:', self.other_numb)
+
+# a = Test(other_numb = 1)
+# a.printNumb()

@@ -53,7 +53,14 @@ class Layer:
     def __create_layer(self):
         'Creates layer'
         for i in range(self.layer_size):
-            self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
+            # For hidden layers, the below line doesn't work as inputs (from previous layer) should
+            # not determine the value of the node, or the size of the layer
+            if self.typeL == 0:
+                'input layer'
+                self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
+            elif self.typeL == 1:
+                'hidden layer'
+
 
     def print_layer(self):
         'Prints layer values'
@@ -70,8 +77,9 @@ class Layer:
                 self.output.append(self.__sig(temp_value))
         return self.output
 
-    def __init__(self, layer_size, inputs = [], activation = 'relu'):
+    def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):
         'initializes the layer'
+        self.typeL = typeL
         self.layer = []
         self.inputs = inputs
         self.layer_size = layer_size
@@ -82,9 +90,9 @@ class Layer:
 
 X = [2]
 
-inputLayer = Layer(layer_size=len(X), inputs=X)
+inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
 inputLayer.print_layer()
-hiddenLayer = Layer(layer_size=2)
+hiddenLayer = Layer(typeL = 1, layer_size=2, inputs=inputLayer.forward_propagate())
 
 # class Test:
 #     def __init__(self, other_numb, numb = 1):

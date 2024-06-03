@@ -28,6 +28,9 @@ class Node:
             temp_sum += self.input_vector[i] * self.weights[i]
         self.value = temp_sum + self.bias
         return self.value
+    
+    def print_weights(self):
+        print(self.weights)
 
 class Layer:
     ''' The Layer is a set of nodes that undergo the same activation function before outputs
@@ -92,9 +95,12 @@ class Layer:
 X = [2,3]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
-inputLayer.print_layer()
 hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward_propagate())
-hiddenLayer.print_layer()
+hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward_propagate())
+hiddenLayer1.print_layer()
+
+for nodes in hiddenLayer.layer:
+    nodes.print_weights()
 
 # class Test:
 #     def __init__(self, other_numb, numb = 1):

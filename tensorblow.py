@@ -89,11 +89,11 @@ class Layer:
         self.__create_layer()
 
 
-X = [2]
+X = [2,3]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
 inputLayer.print_layer()
-hiddenLayer = Layer(typeL = 1, layer_size=2, inputs=inputLayer.forward_propagate())
+hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward_propagate())
 hiddenLayer.print_layer()
 
 # class Test:

@@ -91,6 +91,13 @@ class Layer:
         self.activation = activation
         self.__create_layer()
 
+class Network:
+    '''
+    A collection of layers and nodes
+    '''
+    def __init__(self):
+        pass
+
 
 X = [2,3]
 

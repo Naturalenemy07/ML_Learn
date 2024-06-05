@@ -95,8 +95,10 @@ class Network:
     '''
     A collection of layers and nodes
     '''
-    def __init__(self):
-        pass
+    def __init__(self, layers, input, output):
+        self.layers = layers
+        self.input = input
+        self.output = output        
 
 
 X = [2,3]

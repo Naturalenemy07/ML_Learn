@@ -10,7 +10,7 @@ class Node:
         value: a float representing the output value of the node following forward propagation.
     '''
     def __weights_gen(self):
-        'Generates weights as a list of ones'
+        'Generates weights as a list of ones, need to randomize it'
         return [1] * len(self.input_vector)
 
     def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
@@ -102,11 +102,12 @@ class Network:
 
 
 X = [2,3]
+Y = [1,0]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
 hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward_propagate())
 hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward_propagate())
-hiddenLayer1.print_layer()
+outputLayer = Layer(typeL = 0, layer_size=len(Y), inputs=Y)
 
 for nodes in hiddenLayer.layer:
     nodes.print_weights()

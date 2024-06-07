@@ -123,3 +123,4 @@ for nodes in hiddenLayer.layer:
 
 # a = Test(other_numb = 1)
 # a.printNumb()
+#

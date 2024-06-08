@@ -1,4 +1,5 @@
 import math
+import random
 
 class Node:
     ''' The node is a unit used to build a layer in ML model
@@ -11,7 +12,7 @@ class Node:
     '''
     def __weights_gen(self):
         'Generates weights as a list of ones, need to randomize it'
-        return [1] * len(self.input_vector)
+        return [random.random()] * len(self.input_vector)
 
     def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
         'Initialize Node class'
@@ -71,7 +72,7 @@ class Layer:
         for i in self.layer:
             print(i.value)
     
-    def forward_propagate(self):
+    def forward(self):
         'determines value of each Node in layer using Node class'
         for item in self.layer:
             temp_value = item.calc_value()
@@ -105,9 +106,9 @@ X = [2,3]
 Y = [1,0]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
-hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward_propagate())
-hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward_propagate())
-outputLayer = Layer(typeL = 0, layer_size=len(Y), inputs=Y)
+hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward())
+hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
+outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
 
 for nodes in hiddenLayer.layer:
     nodes.print_weights()
@@ -123,4 +124,3 @@ for nodes in hiddenLayer.layer:
 
 # a = Test(other_numb = 1)
 # a.printNumb()
-#

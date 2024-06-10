@@ -11,8 +11,11 @@ class Node:
         value: a float representing the output value of the node following forward propagation.
     '''
     def __weights_gen(self):
-        'Generates weights as a list of ones, need to randomize it'
-        return [random.random()] * len(self.input_vector)
+        'Generates weights as random floats between 0 and 1'
+        temp_weights = []
+        for i in range(len(self.input_vector)):
+            temp_weights.append(random.random())
+        return temp_weights
 
     def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
         'Initialize Node class'
@@ -70,7 +73,8 @@ class Layer:
     def print_layer(self):
         'Prints layer values'
         for i in self.layer:
-            print(i.value)
+            print("Values:",i.value)
+            print("Weights:", i.weights)
     
     def forward(self):
         'determines value of each Node in layer using Node class'
@@ -110,8 +114,7 @@ hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward())
 hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
 outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
 
-for nodes in hiddenLayer.layer:
-    nodes.print_weights()
+inputLayer.print_layer()
 
 # class Test:
 #     def __init__(self, other_numb, numb = 1):

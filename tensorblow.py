@@ -13,7 +13,7 @@ class Node:
     def __weights_gen(self):
         'Generates weights as a list of ones, need to randomize it'
         temp_weights = []
-        for i in range(self.input_vector):
+        for i in range(len(self.input_vector)):
             temp_weights.append(random.random())
         return temp_weights
 

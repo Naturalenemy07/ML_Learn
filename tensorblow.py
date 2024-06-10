@@ -12,7 +12,10 @@ class Node:
     '''
     def __weights_gen(self):
         'Generates weights as a list of ones, need to randomize it'
-        return [random.random()] * len(self.input_vector)
+        temp_weights = []
+        for i in range(self.input_vector):
+            temp_weights.append(random.random())
+        return temp_weights
 
     def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
         'Initialize Node class'

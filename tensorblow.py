@@ -11,7 +11,7 @@ class Node:
         value: a float representing the output value of the node following forward propagation.
     '''
     def __weights_gen(self):
-        'Generates weights as a list of ones, need to randomize it'
+        'Generates weights as random floats between 0 and 1'
         temp_weights = []
         for i in range(len(self.input_vector)):
             temp_weights.append(random.random())

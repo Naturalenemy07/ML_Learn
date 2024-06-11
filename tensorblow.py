@@ -60,14 +60,11 @@ class Layer:
     
     def __create_layer(self):
         'Creates layer'
-        for i in range(self.layer_size):
-            # For hidden layers, the below line doesn't work as inputs (from previous layer) should
-            # not determine the value of the node, or the size of the layer
-            if self.typeL == 0:
-                'input layer'
-                self.layer = self.inputs
-            elif self.typeL == 1:
-                'hidden layer'
+        if self.typeL == 0:
+            'input layer'
+            self.layer = self.inputs
+        else:
+            for i in range(self.layer_size):
                 self.layer.append(Node(input_vector=self.inputs, value=1))
 
 

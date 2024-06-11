@@ -64,6 +64,7 @@ class Layer:
             'input layer'
             self.layer = self.inputs
         else:
+            'hidden and output layer'
             for i in range(self.layer_size):
                 self.layer.append(Node(input_vector=self.inputs, value=1))
 
@@ -110,7 +111,7 @@ X = [2,3]
 Y = [1,0]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
-hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward())
+hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward()) # a bug exists when calling forward() with input layer as the input layer is a list-not Node
 hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
 outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
 

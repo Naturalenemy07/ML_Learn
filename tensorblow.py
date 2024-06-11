@@ -17,12 +17,13 @@ class Node:
             temp_weights.append(random.random())
         return temp_weights
 
-    def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
+    def __init__(self, input_vector = [], bias = 0.0, value = 0.0, input_node = 0):
         'Initialize Node class'
         self.value = value
         self.bias = bias
         self.input_vector = input_vector
         self.weights = self.__weights_gen()
+        self.input_node = input_node
     
     def calc_value(self):
         'Calculate dot product of weights and inputs'
@@ -64,7 +65,7 @@ class Layer:
             # not determine the value of the node, or the size of the layer
             if self.typeL == 0:
                 'input layer'
-                self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
+                self.layer = self.inputs
             elif self.typeL == 1:
                 'hidden layer'
                 self.layer.append(Node(input_vector=self.inputs, value=1))

@@ -77,12 +77,16 @@ class Layer:
     
     def forward(self):
         'determines value of each Node in layer using Node class'
-        for item in self.layer:
-            temp_value = item.calc_value()
-            if self.activation == 'relu':
-                self.output.append(self.__relu(temp_value))
-            elif self.activation == 'sig':
-                self.output.append(self.__sig(temp_value))
+        if self.typeL == 0:
+            for item in self.layer:
+                self.output.append(item)
+        else:
+            for item in self.layer:
+                temp_value = item.calc_value()
+                if self.activation == 'relu':
+                    self.output.append(self.__relu(temp_value))
+                elif self.activation == 'sig':
+                    self.output.append(self.__sig(temp_value))
         return self.output
 
     def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):

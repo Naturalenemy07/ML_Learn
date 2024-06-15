@@ -17,12 +17,13 @@ class Node:
             temp_weights.append(random.random())
         return temp_weights
 
-    def __init__(self, input_vector = [], bias = 0.0, value = 0.0):
+    def __init__(self, input_vector = [], bias = 0.0, value = 0.0, input_node = 0):
         'Initialize Node class'
         self.value = value
         self.bias = bias
         self.input_vector = input_vector
         self.weights = self.__weights_gen()
+        self.input_node = input_node
     
     def calc_value(self):
         'Calculate dot product of weights and inputs'
@@ -59,14 +60,12 @@ class Layer:
     
     def __create_layer(self):
         'Creates layer'
-        for i in range(self.layer_size):
-            # For hidden layers, the below line doesn't work as inputs (from previous layer) should
-            # not determine the value of the node, or the size of the layer
-            if self.typeL == 0:
-                'input layer'
-                self.layer.append(Node(input_vector=self.inputs, value=self.inputs[i]))
-            elif self.typeL == 1:
-                'hidden layer'
+        if self.typeL == 0:
+            'input layer'
+            self.layer = self.inputs
+        else:
+            'hidden and output layer'
+            for i in range(self.layer_size):
                 self.layer.append(Node(input_vector=self.inputs, value=1))
 
 
@@ -78,12 +77,16 @@ class Layer:
     
     def forward(self):
         'determines value of each Node in layer using Node class'
-        for item in self.layer:
-            temp_value = item.calc_value()
-            if self.activation == 'relu':
-                self.output.append(self.__relu(temp_value))
-            elif self.activation == 'sig':
-                self.output.append(self.__sig(temp_value))
+        if self.typeL == 0:
+            for item in self.layer:
+                self.output.append(item)
+        else:
+            for item in self.layer:
+                temp_value = item.calc_value()
+                if self.activation == 'relu':
+                    self.output.append(self.__relu(temp_value))
+                elif self.activation == 'sig':
+                    self.output.append(self.__sig(temp_value))
         return self.output
 
     def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):
@@ -112,12 +115,13 @@ X = [2,3]
 Y = [1,0]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
-hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.forward())
-hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
+hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.layer) # a bug exists when calling forward() with input layer as the input layer is a list-not Node
+hiddenLayer1 = Layer(typeL= 1, layer_size=4, inputs=hiddenLayer.forward())
 outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
 
-inputLayer.print_layer()
-
+hiddenLayer.print_layer()
+hiddenLayer1.print_layer()
+outputLayer.print_layer()
 # class Test:
 #     def __init__(self, other_numb, numb = 1):
 #         self.other_numb = other_numb

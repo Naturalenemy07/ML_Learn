@@ -116,11 +116,12 @@ Y = [1,0]
 
 inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
 hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.layer) # a bug exists when calling forward() with input layer as the input layer is a list-not Node
-hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
+hiddenLayer1 = Layer(typeL= 1, layer_size=4, inputs=hiddenLayer.forward())
 outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
 
-inputLayer.print_layer()
-
+hiddenLayer.print_layer()
+hiddenLayer1.print_layer()
+outputLayer.print_layer()
 # class Test:
 #     def __init__(self, other_numb, numb = 1):
 #         self.other_numb = other_numb

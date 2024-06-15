@@ -120,7 +120,14 @@ class Network:
         return dict(zip(self.labels, output_prob))
     
     def output_highest(self):
+        final_output = self.output
 
+        keys = list(final_output.keys())
+        items = list(final_output.values())
+        position = items.index(max(final_output.values()))
+        selected = keys[position]
+
+        return selected
         
 
 
@@ -137,20 +144,3 @@ hiddenLayer.print_layer()
 hiddenLayer1.print_layer()
 outputLayer.print_layer()
 print(output_prob)
-# class Test:
-#     def __init__(self, other_numb, numb = 1):
-#         self.other_numb = other_numb
-#         self.numb = numb
-
-#     def printNumb(self):
-#         print('numb:', self.numb)
-#         print('other numb:', self.other_numb)
-
-# a = Test(other_numb = 1)
-# a.printNumb()
-
-a = [1, 0]
-b = [12.523, 4.234]
-test_dict = dict(zip(a, b))
-
-print(test_dict)

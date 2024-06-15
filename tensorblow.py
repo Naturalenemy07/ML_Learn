@@ -109,10 +109,14 @@ class Network:
         self.labels = labels
 
     def input(self):
-        pass
+        inputLayer = Layer(typeL = 0, layer_size=len(self.inputs), inputs=self.inputs)
+        self.layers.append(inputLayer)
+    
+    def dense(self, size):
+        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.inputLayer.layer))
 
-    def output(self):
-        output_prob = self.outputLayer.forward()
+    def output(self):   
+        output_prob = self.Layer[-1].forward()
         return dict(zip(self.labels, output_prob))
     
     def output_highest(self):

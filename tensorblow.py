@@ -103,12 +103,21 @@ class Network:
     '''
     A collection of layers and nodes
     '''
-    def __init__(self, layers, inputs):
+    def __init__(self, layers, inputs, labels):
         self.layers = layers
-        self.inputs = inputs 
+        self.inputs = inputs
+        self.labels = labels
 
     def input(self):
         pass
+
+    def output(self):
+        output_prob = self.outputLayer.forward()
+        return dict(zip(self.labels, output_prob))
+    
+    def output_highest(self):
+
+        
 
 
 X = [2,3]
@@ -135,3 +144,9 @@ print(output_prob)
 
 # a = Test(other_numb = 1)
 # a.printNumb()
+
+a = [1, 0]
+b = [12.523, 4.234]
+test_dict = dict(zip(a, b))
+
+print(test_dict)

@@ -103,8 +103,8 @@ class Network:
     '''
     A collection of layers and nodes
     '''
-    def __init__(self, layers, inputs, labels):
-        self.layers = layers
+    def __init__(self, inputs, labels):
+        self.layers = []
         self.inputs = inputs
         self.labels = labels
 
@@ -144,3 +144,5 @@ hiddenLayer.print_layer()
 hiddenLayer1.print_layer()
 outputLayer.print_layer()
 print(output_prob)
+
+test_network = Network(X, Y)

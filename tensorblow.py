@@ -103,35 +103,47 @@ class Network:
     '''
     A collection of layers and nodes
     '''
-    def __init__(self, layers, inputs):
-        self.layers = layers
-        self.inputs = inputs 
+    def __init__(self, inputs, labels):
+        self.layers = []
+        self.inputs = inputs
+        self.labels = labels
 
     def input(self):
-        pass
+        inputLayer = Layer(typeL = 0, layer_size=len(self.inputs), inputs=self.inputs)
+        self.layers.append(inputLayer)
+    
+    def dense(self, size):
+        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.inputLayer.layer))
+
+    def output(self):   
+        output_prob = self.Layer[-1].forward()
+        return dict(zip(self.labels, output_prob))
+    
+    def output_highest(self):
+        final_output = self.output
+
+        keys = list(final_output.keys())
+        items = list(final_output.values())
+        position = items.index(max(final_output.values()))
+        selected = keys[position]
+
+        return selected
+        
 
 
 X = [2,3]
 Y = [1,0]
 
-inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
-hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.layer) # a bug exists when calling forward() with input layer as the input layer is a list-not Node
-hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
-outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
-output_prob = outputLayer.forward()
+# inputLayer = Layer(typeL = 0, layer_size=len(X), inputs=X)
+# hiddenLayer = Layer(typeL = 1, layer_size=3, inputs=inputLayer.layer) # a bug exists when calling forward() with input layer as the input layer is a list-not Node
+# hiddenLayer1 = Layer(typeL= 1, layer_size=3, inputs=hiddenLayer.forward())
+# outputLayer = Layer(typeL = 1, layer_size=len(Y), inputs=hiddenLayer1.forward())
+# output_prob = outputLayer.forward()
 
-hiddenLayer.print_layer()
-hiddenLayer1.print_layer()
-outputLayer.print_layer()
-print(output_prob)
-# class Test:
-#     def __init__(self, other_numb, numb = 1):
-#         self.other_numb = other_numb
-#         self.numb = numb
+# hiddenLayer.print_layer()
+# hiddenLayer1.print_layer()
+# outputLayer.print_layer()
+# print(output_prob)
 
-#     def printNumb(self):
-#         print('numb:', self.numb)
-#         print('other numb:', self.other_numb)
-
-# a = Test(other_numb = 1)
-# a.printNumb()
+test_network = Network(X, Y)
+test_network.input()

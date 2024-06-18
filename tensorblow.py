@@ -128,6 +128,14 @@ class Network:
         selected = keys[position]
 
         return selected
+    
+class Openbox:
+    def __init__(self, network):
+        self.network = network
+    
+    def heatmap(self, network):
+        pass
+
         
 
 

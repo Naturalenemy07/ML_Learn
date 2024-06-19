@@ -37,6 +37,17 @@ class Node:
     def print_weights(self):
         print(self.weights)
 
+class InputNode:
+    ''' The node is an input node used to build the input layer in ML model
+
+    Attributes:
+        input_vector: A list of values indicating the values.
+    '''
+    def __init__(self, input_vector, value = 0.0):
+        'Initialize Node class'
+        self.input_vector = input_vector
+        self.value = value
+
 class Layer:
     ''' The Layer is a set of nodes that undergo the same activation function before outputs
         are passed to the next layer.
@@ -62,7 +73,8 @@ class Layer:
         'Creates layer'
         if self.typeL == 0:
             'input layer'
-            self.layer = self.inputs
+            for i in range(self.layer_size):
+                self.layer.append(InputNode(input_vector=self.inputs), value = [i])
         else:
             'hidden and output layer'
             for i in range(self.layer_size):

@@ -113,7 +113,10 @@ class Network:
         self.layers.append(inputLayer)
     
     def dense(self, size):
-        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.inputLayer.layer))
+        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.layers[-1]))
+    
+    def printL(self,num):
+        return (self.layers[num]).print_layer()
 
     def output(self):   
         output_prob = self.Layer[-1].forward()
@@ -155,3 +158,7 @@ Y = [1,0]
 
 test_network = Network(X, Y)
 test_network.input()
+test_network.printL(0)
+# test_network.dense(3)
+# list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+# print(list[-1])

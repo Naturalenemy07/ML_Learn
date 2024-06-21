@@ -13,7 +13,7 @@ class Node:
     def __weights_gen(self):
         'Generates weights as random floats between 0 and 1'
         temp_weights = []
-        for i in range(len(self.input_vector)):
+        for i in range(len(self.input_vector.layer)):
             temp_weights.append(random.random())
         return temp_weights
 
@@ -74,7 +74,6 @@ class Layer:
         if self.typeL == 0:
             'input layer'
             for i in range(self.layer_size):
-                print("self.inputs[i]:", self.inputs[i])
                 self.layer.append(InputNode(input_vector=self.inputs, value=self.inputs[i]))
         else:
             'hidden and output layer'
@@ -86,7 +85,7 @@ class Layer:
         'Prints layer values'
         for i in self.layer:
             print("Values:",i.value)
-            # print("Weights:", i.weights)
+            print("Weights:", i.weights)
     
     def forward(self):
         'determines value of each Node in layer using Node class'
@@ -171,7 +170,5 @@ Y = [1,0]
 # print(output_prob)
 
 test_network = Network(X, Y)
-test_network.printL(0)
-# test_network.dense(3)
-# list = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-# print(list[-1])
+test_network.dense(3)
+test_network.printL(1)

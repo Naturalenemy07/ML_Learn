@@ -97,9 +97,11 @@ class Layer:
                 temp_value = item.calc_value()
                 if self.activation == 'relu':
                     self.output.append(self.__relu(temp_value))
+                    item.value = self.__relu(temp_value)
                 elif self.activation == 'sig':
                     self.output.append(self.__sig(temp_value))
-        return self.output
+                    item.value = self.__sig(temp_value)
+        # return self.output
 
     def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):
         'initializes the layer'
@@ -134,6 +136,10 @@ class Network:
     def output(self):   
         output_prob = self.Layer[-1].forward()
         return dict(zip(self.labels, output_prob))
+    
+    def forward_prop(self):
+        for layer in self.layers:
+            layer.forward()
     
     def output_highest(self):
         final_output = self.output
@@ -172,3 +178,5 @@ Y = [1,0]
 test_network = Network(X, Y)
 test_network.dense(3)
 test_network.printL(1)
+test_network.forward_prop()
+

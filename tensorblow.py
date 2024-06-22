@@ -28,9 +28,9 @@ class Node:
     def calc_value(self):
         'Calculate dot product of weights and inputs'
         temp_sum = 0
-        end = len(self.input_vector)
+        end = len(self.input_vector.inputs)
         for i in range(end):
-            temp_sum += self.input_vector[i] * self.weights[i]
+            temp_sum += self.input_vector.inputs[i] * self.weights[i]
         self.value = temp_sum + self.bias
         return self.value
     
@@ -177,6 +177,10 @@ Y = [1,0]
 
 test_network = Network(X, Y)
 test_network.dense(3)
+test_network.dense(3)
 test_network.printL(1)
+test_network.printL(2)
 test_network.forward_prop()
-
+print("==================")
+test_network.printL(1)
+test_network.printL(2)

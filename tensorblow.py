@@ -101,7 +101,7 @@ class Layer:
                 elif self.activation == 'sig':
                     self.output.append(self.__sig(temp_value))
                     item.value = self.__sig(temp_value)
-        # return self.output
+        return self.output
 
     def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):
         'initializes the layer'
@@ -128,7 +128,7 @@ class Network:
         self.layers.append(inputLayer)
     
     def dense(self, size):
-        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.layers[-1]))
+        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.layers[-1].forward()))
     
     def printL(self, num):
         return (self.layers[num]).print_layer()

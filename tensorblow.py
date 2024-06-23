@@ -13,7 +13,7 @@ class Node:
     def __weights_gen(self):
         'Generates weights as random floats between 0 and 1'
         temp_weights = []
-        for i in range(len(self.input_vector.layer)):
+        for i in range(len(self.input_vector)):
             temp_weights.append(random.random())
         return temp_weights
 
@@ -30,7 +30,7 @@ class Node:
         temp_sum = 0
         end = len(self.input_vector)
         for i in range(end):
-            temp_sum += self.input_vector[i] * self.weights[i]
+            temp_sum += self.input_vector.inputs[i] * self.weights[i]
         self.value = temp_sum + self.bias
         return self.value
     
@@ -97,8 +97,10 @@ class Layer:
                 temp_value = item.calc_value()
                 if self.activation == 'relu':
                     self.output.append(self.__relu(temp_value))
+                    item.value = self.__relu(temp_value)
                 elif self.activation == 'sig':
                     self.output.append(self.__sig(temp_value))
+                    item.value = self.__sig(temp_value)
         return self.output
 
     def __init__(self, typeL, layer_size, inputs = [], activation = 'relu'):
@@ -126,7 +128,7 @@ class Network:
         self.layers.append(inputLayer)
     
     def dense(self, size):
-        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.layers[-1]))
+        self.layers.append(Layer(typeL = 1, layer_size=size, inputs=self.layers[-1].forward()))
     
     def printL(self, num):
         return (self.layers[num]).print_layer()
@@ -134,6 +136,10 @@ class Network:
     def output(self):   
         output_prob = self.Layer[-1].forward()
         return dict(zip(self.labels, output_prob))
+    
+    def forward_prop(self):
+        for layer in self.layers:
+            layer.forward()
     
     def output_highest(self):
         final_output = self.output
@@ -171,4 +177,11 @@ Y = [1,0]
 
 test_network = Network(X, Y)
 test_network.dense(3)
+test_network.dense(3)
+
 test_network.printL(1)
+# test_network.printL(2)
+test_network.forward_prop()
+print("==================")
+test_network.printL(1)
+# test_network.printL(2)

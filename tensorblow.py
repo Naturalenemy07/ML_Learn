@@ -13,7 +13,7 @@ class Node:
     def __weights_gen(self):
         'Generates weights as random floats between 0 and 1'
         temp_weights = []
-        for i in range(len(self.input_vector.layer)):
+        for i in range(len(self.input_vector)):
             temp_weights.append(random.random())
         return temp_weights
 
@@ -28,9 +28,10 @@ class Node:
     def calc_value(self):
         'Calculate dot product of weights and inputs'
         temp_sum = 0
-        end = self.input_vector.layer_size
+        end = len(self.input_vector)
+        print("end",end)
         for i in range(end):
-            temp_sum += self.input_vector.inputs[i] * self.weights[i]
+            temp_sum += self.input_vector[i].value * self.weights[i]
         self.value = temp_sum + self.bias
         return self.value
     

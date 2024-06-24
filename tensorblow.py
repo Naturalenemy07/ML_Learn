@@ -29,8 +29,9 @@ class Node:
         'Calculate dot product of weights and inputs'
         temp_sum = 0
         end = len(self.input_vector)
+        print("end",end)
         for i in range(end):
-            temp_sum += self.input_vector.inputs[i] * self.weights[i]
+            temp_sum += self.input_vector[i].value * self.weights[i]
         self.value = temp_sum + self.bias
         return self.value
     

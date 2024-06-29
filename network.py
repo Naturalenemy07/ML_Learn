@@ -14,16 +14,22 @@ class Input_Layer:
         self.input_data = input_data
 
 class Layer:
-    def __init__(self, size, activation):
+    def __init__(self, size, num_inputs, activation):
         self.size = size
+        self.num_inputs = num_inputs
         self.activation = activation
         self.bias = []
-        self.weights = [[]]
-    
-    def random_weights(self):
-        temp_weights = []
-        for i in range(self.size):
-            temp_weights.append(random.random())
+        self.weights = self.__random_weights()
+
+    def __random_weights(self):
+        list_all_weights = []
+        for j in range(self.num_inputs):
+            temp_weights = []
+            for i in range(self.size):
+                temp_weights.append(random.random())
+            list_all_weights.append(temp_weights)
+        return list_all_weights
+
         
 
 class Network:

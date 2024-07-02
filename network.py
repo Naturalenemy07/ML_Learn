@@ -10,8 +10,8 @@ class Node:
         self.weights = weights
 
 class Input_Layer:
-    def __init__(self, input_data):
-        self.input_data = input_data
+    def __init__(self, input_data = []):
+        self.values =  input_data
 
 class Layer:
     def __init__(self, size, num_inputs, activation):
@@ -32,11 +32,19 @@ class Layer:
         return list_all_weights
 
 class Network:
-    def __init__(self, input_data, labels):
+    def __init__(self, input_data = [], labels = []):
         self.input_data = input_data
         self.labels = labels
+        self.layers = []
 
     def forward(self):
+        pass
+
+    def input(self):
+        self.layers.append(Input_Layer(self.input_data).values)
+
+    def dense(self, size, activation):
+        # temp_layer = Layer()
         pass
     
 test_layer = Layer(3, 2, 'relu')

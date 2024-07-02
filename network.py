@@ -19,6 +19,7 @@ class Layer:
         self.num_inputs = num_inputs
         self.activation = activation
         self.bias = []
+        self.values = []
         self.weights = self.__random_weights()
 
     def __random_weights(self):

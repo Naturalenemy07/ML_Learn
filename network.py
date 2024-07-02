@@ -36,19 +36,25 @@ class Network:
         self.input_data = input_data
         self.labels = labels
         self.layers = []
+        self.__input()
 
     def forward(self):
         pass
 
-    def input(self):
+    def __input(self):
         self.layers.append(Input_Layer(self.input_data).values)
 
     def dense(self, size, activation):
         # temp_layer = Layer()
         pass
     
-test_layer = Layer(3, 2, 'relu')
-test_weights = test_layer.weights
-print(test_weights)
+# test_layer = Layer(3, 2, 'relu')
+# test_weights = test_layer.weights
+# print(test_weights)
+
+test_input = [1,2,3,4,5]
+test_labels = [0,1]
+test_network = Network(test_input, test_labels)
+print(test_network.layers)
 
 

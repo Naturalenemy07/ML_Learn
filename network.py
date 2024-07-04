@@ -1,11 +1,24 @@
 import random
 
 class Input_Node:
+    ''' The inputs to network represented as nodes
+
+    Attributes:
+        value: a float representing the input value.
+    '''
     def __init__(self, value):
         self.value = value
 
 class Node:
-    def __init__(self, value, weights):
+    ''' The building block of a network. At this time, the class is not being used, instead the information 
+        is being represented in the Layer class as matrices and vectors. Still determining how to best build 
+        a network to maximize transparency-possible a node class is needed for this goal. 
+
+    Attributes:
+        value: float representing the calculated value of the node following forward propagation.
+        weights: a list of floats representing the weights assigned to each input value for the node.
+    '''
+    def __init__(self, value, weights = []):
         self.value = value
         self.weights = weights
 

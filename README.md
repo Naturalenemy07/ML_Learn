@@ -3,5 +3,5 @@ Learning how to build machine learning models from scratch. Have used Scikit-Lea
 
 <ins>Recommended Resources:</ins>\
 [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/about.html) by Michael Nielsen\
-3B1B Series: [Neural Networks](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi)\
+[Neural Networks](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi) by 3B1B\
 [Mathematics for Machine Learning](https://mml-book.github.io/) by Marc Peter Deisenroth, A. Aldo Faisal, and Cheng Soon Ong.
